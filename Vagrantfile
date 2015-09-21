@@ -20,4 +20,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   # Use VBoxManage to customize the VM. For example to change memory:
   #   vb.customize ["modifyvm", :id, "--memory", "1024"]
   # end
+
+#added by nathan
+    config.vm.network "forwarded_port", guest: 80, host: 8080
+    config.vm.network "private_network", ip: "192.168.33.10"
+    config.vm.synced_folder "/Users/nate/GitHub/shop-wise/", "/home/shopws"
+    config.vm.provision "file", source: "~/GitHub/shop-wise/shopwise.conf", destination: "/etc/apache2/sites-available/shopwise.conf"
 end
